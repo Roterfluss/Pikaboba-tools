@@ -1,117 +1,67 @@
-<!DOCTYPE html><html lang="de">
+<!DOCTYPE html>
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PikaBoba Tea – B2B FAQ</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: sans-serif; background: #f5f5f3; padding: 2rem 1rem; color: #1a1a1a; }
-  .container { max-width: 720px; margin: 0 auto; }
-  .tag { display: inline-block; background: #e6f1fb; color: #185fa5; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 8px; margin-bottom: 8px; }
-  h1 { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
-  .sub { font-size: 13px; color: #666; margin-bottom: 1.5rem; }
-  .faq-item { border: 0.5px solid #ddd; border-radius: 12px; margin-bottom: 10px; overflow: hidden; background: #fff; }
-  .faq-q { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; }
-  .faq-q:hover { background: #f9f9f7; }
-  .faq-num { font-size: 12px; font-weight: 500; color: #185fa5; background: #e6f1fb; border-radius: 8px; padding: 2px 8px; white-space: nowrap; margin-top: 1px; flex-shrink: 0; }
-  .badge-updated { font-size: 11px; font-weight: 500; color: #3b6d11; background: #eaf3de; border-radius: 8px; padding: 2px 7px; white-space: nowrap; margin-top: 1px; flex-shrink: 0; }
-  .faq-q-text { flex: 1; }
-  .faq-q-de { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 2px; line-height: 1.4; }
-  .faq-q-vi { font-size: 12px; color: #888; line-height: 1.4; }
-  .chevron { font-size: 16px; color: #aaa; transition: transform 0.2s; flex-shrink: 0; margin-top: 2px; }
-  .chevron.open { transform: rotate(180deg); }
-  .faq-a { display: none; border-top: 0.5px solid #eee; padding: 14px 16px; background: #f9f9f7; }
-  .faq-a.open { display: block; }
-  .lang-label { font-size: 11px; font-weight: 500; color: #aaa; margin-bottom: 3px; }
-  .a-de { font-size: 13px; color: #1a1a1a; line-height: 1.6; margin-bottom: 10px; }
-  .a-vi { font-size: 13px; color: #555; line-height: 1.6; border-left: 2px solid #b5d4f4; padding-left: 10px; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: #f5f5f3; padding: 2rem 1rem; color: #1a1a1a; }
+.container { max-width: 720px; margin: 0 auto; }
+.tag { display: inline-block; background: #e6f1fb; color: #185fa5; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 8px; margin-bottom: 8px; }
+h1 { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+.sub { font-size: 13px; color: #666; margin-bottom: 1.5rem; }
+.faq-item { border: 0.5px solid #ddd; border-radius: 12px; margin-bottom: 10px; overflow: hidden; background: #fff; }
+.faq-q { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; cursor: pointer; user-select: none; }
+.faq-q:hover { background: #f9f9f7; }
+.faq-num { font-size: 12px; font-weight: 500; color: #185fa5; background: #e6f1fb; border-radius: 8px; padding: 2px 8px; white-space: nowrap; margin-top: 1px; flex-shrink: 0; }
+.badge-updated { font-size: 11px; font-weight: 500; color: #3b6d11; background: #eaf3de; border-radius: 8px; padding: 2px 7px; white-space: nowrap; margin-top: 1px; flex-shrink: 0; }
+.faq-q-text { flex: 1; }
+.faq-q-de { font-size: 14px; font-weight: 500; color: #1a1a1a; margin-bottom: 2px; line-height: 1.4; }
+.faq-q-vi { font-size: 12px; color: #888; line-height: 1.4; }
+.chevron { font-size: 16px; color: #aaa; transition: transform 0.2s; flex-shrink: 0; margin-top: 2px; }
+.chevron.open { transform: rotate(180deg); }
+.faq-a { display: none; border-top: 0.5px solid #eee; padding: 14px 16px; background: #f9f9f7; }
+.faq-a.open { display: block; }
+.lang-label { font-size: 11px; font-weight: 500; color: #aaa; margin-bottom: 3px; }
+.a-de { font-size: 13px; color: #1a1a1a; line-height: 1.6; margin-bottom: 10px; }
+.a-vi { font-size: 13px; color: #555; line-height: 1.6; border-left: 2px solid #b5d4f4; padding-left: 10px; }
 </style>
 </head>
 <body>
 <div class="container">
-  <span class="tag">PikaBoba Tea · B2B FAQ</span>
-  <h1>Fragen vor der ersten Bestellung</h1>
-  <p class="sub">Câu hỏi thường gặp trước khi đặt hàng lần đầu · Bấm để xem câu trả lời</p>
-  <div id="faq-list"></div>
+<span class="tag">PikaBoba Tea · B2B FAQ</span>
+<h1>Fragen vor der ersten Bestellung</h1>
+<p class="sub">Câu hỏi thường gặp trước khi đặt hàng lần đầu · Bấm để xem câu trả lời</p>
+<div id="faq-list"></div>
 </div>
 <script>
 const faqs = [
-  {
-    q_de: "Was ist die Mindestbestellmenge?",
-    q_vi: "Số lượng đặt hàng tối thiểu là bao nhiêu?",
-    a_de: "Unsere Mindestbestellmenge beträgt 1.000 €. Ab einem Bestellwert von 3.500 € liefern wir versandkostenfrei in Deutschland, Österreich, die Schweiz und Tschechien. Bei Bestellungen unter 3.500 € werden die Versandkosten separat berechnet.",
-    a_vi: "Đơn hàng tối thiểu là 1.000 €. Từ 3.500 € trở lên, chúng tôi miễn phí vận chuyển đến Đức, Áo, Thụy Sĩ và Séc. Dưới mức đó, phí vận chuyển sẽ được tính riêng.",
-    updated: true
-  },
-  {
-    q_de: "Welche Zahlungsmethoden akzeptieren Sie?",
-    q_vi: "Bạn chấp nhận những phương thức thanh toán nào?",
-    a_de: "Wir akzeptieren Überweisung, PayPal und Rechnung (für Stammkunden nach Vereinbarung).",
-    a_vi: "Chúng tôi nhận chuyển khoản, PayPal và thanh toán theo hóa đơn (dành cho khách hàng quen theo thỏa thuận)."
-  },
-  {
-    q_de: "Wie lange dauert die Lieferung?",
-    q_vi: "Thời gian giao hàng mất bao lâu?",
-    a_de: "Innerhalb Deutschlands in der Regel 2–3 Werktage. Österreich, Schweiz und Tschechien: 3–5 Werktage.",
-    a_vi: "Trong nước Đức thường 2–3 ngày làm việc. Áo, Thụy Sĩ và Séc: 3–5 ngày làm việc."
-  },
-  {
-    q_de: "Welche Marken führen Sie?",
-    q_vi: "Bạn phân phối những thương hiệu nào?",
-    a_de: "Wir vertreiben ausschließlich EU-zugelassene Marken: Boboq und Possmei – beide bekannt für Qualität und Konsistenz.",
-    a_vi: "Chúng tôi phân phối độc quyền các thương hiệu được phép lưu hành tại EU: Boboq và Possmei – nổi tiếng về chất lượng và ổn định."
-  },
-  {
-    q_de: "Kann ich Muster oder Proben bestellen?",
-    q_vi: "Tôi có thể đặt mẫu thử không?",
-    a_de: "Ja, wir bieten ein Starter-Paket mit ausgewählten Produktmustern an. Sprechen Sie uns einfach an.",
-    a_vi: "Có, chúng tôi cung cấp gói dùng thử với các sản phẩm được chọn lọc. Liên hệ chúng tôi để biết thêm chi tiết."
-  },
-  {
-    q_de: "Sind Ihre Produkte für den deutschen Markt zugelassen?",
-    q_vi: "Sản phẩm của bạn có được cấp phép tại thị trường Đức không?",
-    a_de: "Ja, alle Produkte sind EU-konform und entsprechen den deutschen Lebensmittelvorschriften (LMIV).",
-    a_vi: "Có, tất cả sản phẩm đều tuân thủ quy định EU và các tiêu chuẩn thực phẩm của Đức (LMIV)."
-  },
-  {
-    q_de: "Bieten Sie Unterstützung bei der Rezeptentwicklung an?",
-    q_vi: "Bạn có hỗ trợ phát triển công thức không?",
-    a_de: "Ja, wir beraten Sie gerne bei Rezepten, Mengenverhältnissen und neuen Trendgetränken für Ihr Menü.",
-    a_vi: "Có, chúng tôi sẵn sàng tư vấn về công thức, tỷ lệ pha chế và các thức uống xu hướng mới cho thực đơn của bạn."
-  },
-  {
-    q_de: "Wie funktioniert die Rückgabe oder Reklamation?",
-    q_vi: "Quy trình đổi trả hoặc khiếu nại như thế nào?",
-    a_de: "Bei beschädigten oder falschen Lieferungen erstatten wir den Betrag oder liefern nach – unkompliziert und schnell.",
-    a_vi: "Với hàng bị hỏng hoặc giao sai, chúng tôi hoàn tiền hoặc giao lại – đơn giản và nhanh chóng."
-  },
-  {
-    q_de: "Gibt es Rabatte für Großbestellungen?",
-    q_vi: "Có chiết khấu cho đơn hàng lớn không?",
-    a_de: "Ab einem Bestellwert von 3.500 € entfallen bereits die Versandkosten – das ist eine direkte Ersparnis. Für Stammkunden mit regelmäßigen Großbestellungen bieten wir zusätzliche Konditionen, die wir gerne individuell besprechen.",
-    a_vi: "Từ 3.500 € đơn hàng, bạn đã tiết kiệm toàn bộ phí vận chuyển — đây là khoản lợi trực tiếp. Với khách hàng thường xuyên có đơn lớn, chúng tôi sẵn sàng thương lượng thêm các điều kiện ưu đãi riêng.",
-    updated: true
-  },
-  {
-    q_de: "Wie kann ich meine erste Bestellung aufgeben?",
-    q_vi: "Làm thế nào để đặt đơn hàng đầu tiên?",
-    a_de: "Schreiben Sie uns eine E-Mail oder kontaktieren Sie uns per WhatsApp. Wir begleiten Sie Schritt für Schritt.",
-    a_vi: "Gửi email hoặc liên hệ qua WhatsApp. Chúng tôi sẽ hướng dẫn bạn từng bước một."
-  }
-];const list = document.getElementById(‘faq-list’);
+  { q_de: "Was ist die Mindestbestellmenge?", q_vi: "Số lượng đặt hàng tối thiểu là bao nhiêu?", a_de: "Unsere Mindestbestellmenge beträgt 1.000 €. Ab einem Bestellwert von 1.500 € liefern wir versandkostenfrei nach Deutschland, Österreich, Schweiz und Tschechien.", a_vi: "Đơn hàng tối thiểu là 1.000 €. Từ 1.500 € trở lên miễn phí vận chuyển đến Đức, Áo, Thụy Sĩ và Séc.", updated: true },
+  { q_de: "Welche Zahlungsmethoden akzeptieren Sie?", q_vi: "Bạn chấp nhận những phương thức thanh toán nào?", a_de: "Wir akzeptieren Überweisung, PayPal und Rechnung (für Stammkunden nach Vereinbarung).", a_vi: "Chúng tôi nhận chuyển khoản, PayPal và thanh toán theo hóa đơn (dành cho khách hàng quen)." },
+  { q_de: "Wie lange dauert die Lieferung?", q_vi: "Thời gian giao hàng mất bao lâu?", a_de: "Innerhalb Deutschlands 2–3 Werktage. Österreich, Schweiz und Tschechien: 3–5 Werktage.", a_vi: "Trong nước Đức 2–3 ngày làm việc. Áo, Thụy Sĩ và Séc: 3–5 ngày làm việc." },
+  { q_de: "Welche Marken führen Sie?", q_vi: "Bạn phân phối những thương hiệu nào?", a_de: "Wir vertreiben EU-zugelassene Marken: Boboq und Possmei – bekannt für Qualität und Konsistenz.", a_vi: "Chúng tôi phân phối các thương hiệu EU: Boboq và Possmei – nổi tiếng về chất lượng." },
+  { q_de: "Kann ich Muster oder Proben bestellen?", q_vi: "Tôi có thể đặt mẫu thử không?", a_de: "Ja, wir bieten ein Starter-Paket mit ausgewählten Produktmustern an. Sprechen Sie uns an.", a_vi: "Có, chúng tôi cung cấp gói dùng thử. Liên hệ để biết thêm chi tiết." },
+  { q_de: "Sind Ihre Produkte für den deutschen Markt zugelassen?", q_vi: "Sản phẩm có được cấp phép tại Đức không?", a_de: "Ja, alle Produkte sind EU-konform und entsprechen den deutschen Lebensmittelvorschriften (LMIV).", a_vi: "Có, tất cả sản phẩm tuân thủ quy định EU và tiêu chuẩn thực phẩm Đức (LMIV)." },
+  { q_de: "Bieten Sie Unterstützung bei der Rezeptentwicklung an?", q_vi: "Bạn có hỗ trợ phát triển công thức không?", a_de: "Ja, wir beraten Sie gerne bei Rezepten, Mengenverhältnissen und Trendgetränken.", a_vi: "Có, chúng tôi tư vấn công thức, tỷ lệ pha chế và thức uống xu hướng mới." },
+  { q_de: "Wie funktioniert die Rückgabe oder Reklamation?", q_vi: "Quy trình đổi trả hoặc khiếu nại như thế nào?", a_de: "Bei beschädigten oder falschen Lieferungen erstatten wir den Betrag oder liefern nach – schnell und unkompliziert.", a_vi: "Với hàng hỏng hoặc giao sai, chúng tôi hoàn tiền hoặc giao lại nhanh chóng." },
+  { q_de: "Gibt es Rabatte für Großbestellungen?", q_vi: "Có chiết khấu cho đơn hàng lớn không?", a_de: "Ab 1.500 € entfallen die Versandkosten. Für Stammkunden mit Großbestellungen bieten wir individuelle Konditionen.", a_vi: "Từ 1.500 € miễn phí vận chuyển. Khách hàng thường xuyên có thể thương lượng thêm ưu đãi.", updated: true },
+  { q_de: "Wie kann ich meine erste Bestellung aufgeben?", q_vi: "Làm thế nào để đặt đơn hàng đầu tiên?", a_de: "Schreiben Sie uns eine E-Mail oder kontaktieren Sie uns per WhatsApp. Wir begleiten Sie Schritt für Schritt.", a_vi: "Gửi email hoặc liên hệ qua WhatsApp. Chúng tôi hướng dẫn từng bước." }
+];
+const list = document.getElementById('faq-list');
 faqs.forEach((f, i) => {
-const item = document.createElement(‘div’);
-item.className = ‘faq-item’;
-item.innerHTML =  <div class="faq-q" onclick="toggle(${i})"> <span class="faq-num">${String(i+1).padStart(2,'0')}</span> ${f.updated ? '<span class="badge-updated">aktualisiert</span>' : ''} <div class="faq-q-text"> <p class="faq-q-de">${f.q_de}</p> <p class="faq-q-vi">${f.q\_vi}</p> </div> <span class="chevron" id="chev-${i}">▾</span> </div> <div class="faq-a" id="ans-${i}"> <p class="lang-label">Deutsch</p> <p class="a-de">${f.a_de}</p> <p class="lang-label" style="margin-top:10px;">Tiếng Việt</p> <p class="a-vi">${f.a_vi}</p> </div>;
-list.appendChild(item);
+  const item = document.createElement('div');
+  item.className = 'faq-item';
+  item.innerHTML = `<div class="faq-q" onclick="toggle(${i})"><span class="faq-num">${String(i+1).padStart(2,'0')}</span>${f.updated ? '<span class="badge-updated">aktualisiert</span>' : ''}<div class="faq-q-text"><p class="faq-q-de">${f.q_de}</p><p class="faq-q-vi">${f.q_vi}</p></div><span class="chevron" id="chev-${i}">▾</span></div><div class="faq-a" id="ans-${i}"><p class="lang-label">Deutsch</p><p class="a-de">${f.a_de}</p><p class="lang-label" style="margin-top:10px;">Tiếng Việt</p><p class="a-vi">${f.a_vi}</p></div>`;
+  list.appendChild(item);
 });
 function toggle(i) {
-const ans = document.getElementById(‘ans-’ + i);
-const chev = document.getElementById(‘chev-’ + i);
-const isOpen = ans.classList.contains(‘open’);
-document.querySelectorAll(’.faq-a’).forEach(a => a.classList.remove(‘open’));
-document.querySelectorAll(’.chevron’).forEach(c => c.classList.remove(‘open’));
-if (!isOpen) { ans.classList.add(‘open’); chev.classList.add(‘open’); }
+  const ans = document.getElementById('ans-'+i);
+  const chev = document.getElementById('chev-'+i);
+  const isOpen = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.chevron').forEach(c => c.classList.remove('open'));
+  if (!isOpen) { ans.classList.add('open'); chev.classList.add('open'); }
 }
 </script>
 </body>
