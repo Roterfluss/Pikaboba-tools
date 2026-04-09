@@ -1,0 +1,32 @@
+
+<!-- FOOTER -->
+<footer>
+  © 2025 PikaBoba Tea · Leinfelden-Echterdingen ·
+  <a href="mailto:info@pikaboba.de" style="color:var(--blue)">info@pikaboba.de</a>
+</footer>
+ 
+<script>
+  // Live open/closed status
+  (function () {
+    const el = document.getElementById('status-line');
+    if (!el) return;
+    const now = new Date();
+    const day = now.getDay(); // 0=Sun, 6=Sat
+    const h = now.getHours();
+    const isWeekday = day >= 1 && day <= 5;
+    const isOpen = isWeekday && h >= 9 && h < 17;
+    if (isOpen) {
+      el.innerHTML = '<span style="color:#15803d;font-weight:600">● Jetzt geöffnet</span> · Schließt um 17:00 Uhr';
+    } else if (isWeekday && h < 9) {
+      el.innerHTML = '<span style="color:#dc2626;font-weight:600">● Noch geschlossen</span> · Öffnet heute um 09:00 Uhr';
+    } else {
+      const nextOpen = isWeekday && h >= 17
+        ? (day === 5 ? 'Montag' : 'Morgen')
+        : 'Montag';
+      el.innerHTML = `<span style="color:#dc2626;font-weight:600">● Geschlossen</span> · Öffnet wieder ${nextOpen} um 09:00 Uhr`;
+    }
+  })();
+</script>
+ 
+</body>
+</html>
