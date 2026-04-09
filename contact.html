@@ -1,10 +1,357 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – PikaBoba Tea</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue:    #185fa5;
+      --blue-dk: #0f4278;
+      --blue-lt: #e8f0fb;
+      --bg:      #f5f5f3;
+      --card:    #ffffff;
+      --text:    #1a1a1a;
+      --muted:   #6b7280;
+      --border:  #dde3ec;
+      --green:   #25d366;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .logo span { color: var(--text); font-size: 0.7rem; font-family: 'DM Sans', sans-serif; font-weight: 400; display: block; letter-spacing: 0.06em; text-transform: uppercase; margin-top: -2px; color: var(--muted); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+
+    /* ── HERO STRIP ── */
+    .hero-strip {
+      background: var(--blue);
+      color: #fff;
+      padding: 3.5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-strip h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: .5rem;
+    }
+    .hero-strip p {
+      font-size: .95rem;
+      opacity: .8;
+      font-weight: 300;
+    }
+    .hero-strip .lang-toggle {
+      font-size: .75rem;
+      opacity: .55;
+      margin-top: .35rem;
+    }
+
+    /* ── MAIN GRID ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    @media (max-width: 640px) {
+      .container { grid-template-columns: 1fr; padding: 2rem 1rem 4rem; }
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .card:hover {
+      box-shadow: 0 8px 28px rgba(24, 95, 165, .1);
+      transform: translateY(-2px);
+    }
+    .card-full { grid-column: 1 / -1; }
+
+    .card-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: var(--blue-lt);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.1rem;
+    }
+    .card-icon svg { width: 20px; height: 20px; stroke: var(--blue); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .card h2 {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: .75rem;
+    }
+    .card p, .card address {
+      font-style: normal;
+      font-size: .95rem;
+      line-height: 1.7;
+      color: var(--text);
+    }
+    .card a { color: var(--blue); text-decoration: none; font-weight: 500; }
+    .card a:hover { text-decoration: underline; }
+
+    /* ── CTA BUTTONS ── */
+    .btn-group { display: flex; flex-direction: column; gap: .75rem; margin-top: 1.2rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+      padding: .75rem 1.4rem;
+      border-radius: 8px;
+      font-size: .9rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: filter .2s, transform .15s;
+      border: none;
+    }
+    .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-whatsapp { background: var(--green); color: #fff; }
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── HOURS TABLE ── */
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+    .hours-table td { padding: .45rem 0; font-size: .9rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .hours-table td:last-child { text-align: right; color: var(--blue); font-weight: 500; }
+    .hours-table tr:last-child td { border-bottom: none; }
+    .badge {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: .2rem .55rem;
+      border-radius: 20px;
+    }
+    .badge-open { background: #dcfce7; color: #15803d; }
+    .badge-closed { background: #fee2e2; color: #dc2626; }
+
+    /* ── MAP PLACEHOLDER ── */
+    .map-wrap {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-top: 1.2rem;
+      height: 220px;
+    }
+    .map-wrap iframe {
+      width: 100%; height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── NOTE BAR ── */
+    .note-bar {
+      grid-column: 1 / -1;
+      background: var(--blue-lt);
+      border: 1px solid #c5d9f0;
+      border-radius: 10px;
+      padding: 1rem 1.4rem;
+      font-size: .875rem;
+      color: var(--blue-dk);
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .note-bar svg { flex-shrink: 0; margin-top: 1px; width: 18px; height: 18px; stroke: var(--blue); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      font-size: .78rem;
+      color: var(--muted);
+      padding: 2rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card, .note-bar {
+      animation: fadeUp .45s ease both;
+    }
+    .card:nth-child(1) { animation-delay: .05s; }
+    .card:nth-child(2) { animation-delay: .12s; }
+    .card:nth-child(3) { animation-delay: .18s; }
+    .card:nth-child(4) { animation-delay: .24s; }
+    .note-bar           { animation-delay: .30s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    PikaBoba Tea
+    <span>B2B Wholesale · DACH &amp; CZ</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#" class="active">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero-strip">
+  <h1>Kontakt / Liên hệ</h1>
+  <p>Wir sind für Sie da – persönlich, schnell, zuverlässig.</p>
+  <p class="lang-toggle">Chúng tôi luôn sẵn sàng hỗ trợ bạn.</p>
+</div>
+
+<!-- GRID -->
+<div class="container">
+
+  <!-- ADDRESS -->
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+    </div>
+    <h2>Adresse · Địa chỉ kho</h2>
+    <address>
+      <strong>PikaBoba Tea</strong><br />
+      Leinfelden-Echterdingen<br />
+      70771 Leinfelden-Echterdingen<br />
+      Deutschland
+    </address>
+    <div class="map-wrap">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42045.1!2d9.1677!3d48.6928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4799bfde73e7b2a5%3A0x7e9a4f82ab6b0be2!2sLeinfelden-Echterdingen!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Standort PikaBoba Tea">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- CONTACT CTA -->
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    </div>
+    <h2>Kontakt aufnehmen · Liên lạc</h2>
+    <p>
+      <strong>E-Mail</strong><br />
+      <a href="mailto:info@pikaboba.de">info@pikaboba.de</a>
+    </p>
+    <p style="margin-top:.9rem">
+      Für Bestellungen, Produktanfragen oder allgemeine Fragen – schreiben Sie uns einfach.<br />
+      <span style="font-size:.8rem;color:var(--muted)">Đặt hàng, hỏi sản phẩm hoặc thông tin chung – vui lòng liên hệ.</span>
+    </p>
+    <div class="btn-group">
+      <a class="btn btn-primary" href="mailto:info@pikaboba.de">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        E-Mail schreiben
+      </a>
+      <a class="btn btn-whatsapp" href="https://wa.me/49" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        WhatsApp schreiben
+      </a>
+    </div>
+  </div>
+
+  <!-- HOURS -->
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+    <h2>Öffnungszeiten · Giờ làm việc</h2>
+    <table class="hours-table">
+      <tr>
+        <td>Montag – Freitag</td>
+        <td>09:00 – 17:00 Uhr</td>
+      </tr>
+      <tr>
+        <td>Samstag</td>
+        <td style="color:var(--muted)">Geschlossen</td>
+      </tr>
+      <tr>
+        <td>Sonntag</td>
+        <td style="color:var(--muted)">Geschlossen</td>
+      </tr>
+    </table>
+    <p id="status-line" style="margin-top:1rem;font-size:.82rem;color:var(--muted)"></p>
+  </div>
+
+  <!-- ORDER INFO -->
+  <div class="card">
+    <div class="card-icon">
+      <svg viewBox="0 0 24 24"><path d="m6 2 1.5 4.5h9L18 2"/><path d="M3 7h18l-1.5 13H4.5z"/><path d="M9 11v4m6-4v4"/></svg>
+    </div>
+    <h2>Bestellkonditionen · Điều kiện đặt hàng</h2>
+    <p style="line-height:1.9;font-size:.92rem">
+      <strong>Mindestbestellwert:</strong> 1.000 €<br />
+      <strong>Versandkostenfrei ab:</strong> 3.500 €<br />
+      <strong>Liefergebiet:</strong> DE, CH, AT, CZ<br />
+      <strong>Marken:</strong> Boboq, Possmei
+    </p>
+    <p style="margin-top:.9rem;font-size:.8rem;color:var(--muted)">
+      Nur für gewerbliche Kunden (B2B).<br />
+      Chỉ dành cho khách hàng doanh nghiệp (B2B).
+    </p>
+  </div>
+
+  <!-- NOTE BAR -->
+  <div class="note-bar">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span>
+      <strong>Hinweis:</strong> PikaBoba Tea beliefert ausschließlich Gewerbetreibende in Deutschland (Bayern, Baden-Württemberg), der Schweiz, Österreich und Tschechien.
+      Privatpersonen können leider keine Bestellungen aufgeben. ·
+      <em>Chỉ phục vụ khách hàng doanh nghiệp tại DE, CH, AT, CZ.</em>
+    </span>
+  </div>
+
+</div>
 
 <!-- FOOTER -->
 <footer>
   © 2025 PikaBoba Tea · Leinfelden-Echterdingen ·
   <a href="mailto:info@pikaboba.de" style="color:var(--blue)">info@pikaboba.de</a>
 </footer>
- 
+
 <script>
   // Live open/closed status
   (function () {
@@ -27,6 +374,6 @@
     }
   })();
 </script>
- 
+
 </body>
 </html>
